@@ -31,22 +31,25 @@ void division_operation(stack_t **stack, unsigned int ln)
 	int result;
 	stack_t *temp;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%d: can't div, stack too short\n", ln);
-		exit(EXIT_FAILURE);
-	}
-
-	temp = *stack;
-	if (temp->n == 0)
-	{
-		fprintf(stderr, "L%d: division by zero\n", ln);
-		exit(EXIT_FAILURE);
-	}
-	result = temp->next->n / temp->n;
-	temp->next->n = result;
-	*stack = temp->next;
-	free(temp);
+	switch ((*stack == NULL) || ((*stack)->next == NULL)) {
+    case 0:
+        /* Neither stack nor stack->next is NULL */
+        temp = *stack;
+        if (temp->n == 0) {
+            fprintf(stderr, "L%d: division by zero\n", ln);
+            exit(EXIT_FAILURE);
+        }
+        result = temp->next->n / temp->n;
+        temp->next->n = result;
+        *stack = temp->next;
+        free(temp);
+        break;
+    case 1:
+        /* Either stack or stack->next is NULL */
+        fprintf(stderr, "L%d: can't div, stack too short\n", ln);
+        exit(EXIT_FAILURE);
+        break; /* This break is not necessary but included for clarity */
+}
 }
 
 /**

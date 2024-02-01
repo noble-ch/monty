@@ -60,19 +60,20 @@ void division_operation(stack_t **stack, unsigned int ln)
 void mul_operation(stack_t **stack, unsigned int ln)
 {
 	int result;
-	stack_t *temp;
+stack_t *temp;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", ln);
-		exit(EXIT_FAILURE);
-	}
-
-	temp = *stack;
-	result = temp->next->n * temp->n;
-	temp->next->n = result;
-	*stack = temp->next;
-	free(temp);
+if (!(*stack == NULL || (*stack)->next == NULL)) {
+    /* Both stack and stack->next are not NULL */
+    temp = *stack;
+    result = temp->next->n * temp->n;
+    temp->next->n = result;
+    *stack = temp->next;
+    free(temp);
+} else {
+    /* Either stack or stack->next is NULL */
+    fprintf(stderr, "L%d: can't mul, stack too short\n", ln);
+    exit(EXIT_FAILURE);
+}
 }
 
 /**

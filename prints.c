@@ -48,7 +48,7 @@ void print_char_operation(stack_t **stack, unsigned int ln)
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: can not print char, stack empty\n", ln);
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", ln);
 		exit(EXIT_FAILURE);
 	}
 

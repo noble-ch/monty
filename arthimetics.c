@@ -102,20 +102,21 @@ void modulo_operation(stack_t **stack, unsigned int ln)
 {
 	int a, b;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%d: can't mod, stack too short\n", ln);
-		exit(EXIT_FAILURE);
-	}
-
-	a = (*stack)->n;
-	b = (*stack)->next->n;
-
-	if (a == 0)
-	{
-		fprintf(stderr, "L%d: division by zero\n", ln);
-		exit(EXIT_FAILURE);
-	}
+	switch ((*stack == NULL) || ((*stack)->next == NULL)) {
+    case 0:
+        a = (*stack)->n;
+        b = (*stack)->next->n;
+        
+        if (a == 0) {
+            fprintf(stderr, "L%d: division by zero\n", ln);
+            exit(EXIT_FAILURE);
+        }
+        break;
+    case 1:
+        fprintf(stderr, "L%d: can't mod, stack too short\n", ln);
+        exit(EXIT_FAILURE);
+        break; 
+}
 
 	(*stack)->next->n = b % a;
 	pop_operation(stack, ln);

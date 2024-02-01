@@ -1,5 +1,6 @@
 #include "monty.h"
 
+glob_t glob;
 
 /**
  * main - entry point for the monty program
@@ -10,7 +11,6 @@
  */
 int main(int argc, char *argv[])
 {
-	glob_t glob;
 	stack_t *stack = NULL;
 
 	if (argc != 2)

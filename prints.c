@@ -9,7 +9,7 @@ void print_operation(stack_t **stack, unsigned int ln)
 {
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: can not print, stack empty\n", ln);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", ln);
 		free(glob.line);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);

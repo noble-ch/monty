@@ -55,7 +55,7 @@ void print_char_operation(stack_t **stack, unsigned int ln)
 	value = (*stack)->n;
 	if (value < 0 || value > 127)
 	{
-		fprintf(stderr, "L%d: can not print char, value out of range\n", ln);
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", ln);
 		exit(EXIT_FAILURE);
 	}
 
